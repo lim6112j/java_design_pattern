@@ -1,5 +1,10 @@
 package com.designpattern.tutorial;
 
+import com.designpattern.tutorial.decorator.Beverage;
+import com.designpattern.tutorial.decorator.DarkRoast;
+import com.designpattern.tutorial.decorator.Espresso;
+import com.designpattern.tutorial.decorator.Mocha;
+import com.designpattern.tutorial.decorator.Whip;
 import com.designpattern.tutorial.observer.CurrentConditionsDisplay;
 import com.designpattern.tutorial.observer.WeatherData;
 
@@ -27,6 +32,14 @@ public class DemoApplication {
 		// weatherData.removeObserver(currentDisplay);
 		weatherData.setMeasurements(40, 45, 40.4f);
 
+		// decorator
+		Beverage beverage = new Espresso();
+		System.out.println(beverage.getDescription() + " $" + beverage.cost());
+		Beverage beverage2 = new DarkRoast();
+		beverage2 = new Mocha(beverage2);
+		beverage2 = new Mocha(beverage2);
+		beverage2 = new Whip(beverage2);
+		System.out.println(beverage2.getDescription() + " $" + beverage2.cost());
 	}
 
 }
