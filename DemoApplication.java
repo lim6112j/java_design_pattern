@@ -1,5 +1,8 @@
 package com.designpattern.tutorial;
 
+import com.designpattern.tutorial.observer.CurrentConditionsDisplay;
+import com.designpattern.tutorial.observer.WeatherData;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -15,6 +18,15 @@ public class DemoApplication {
 		mallard.setQuackBehavior(new MuteQuack());
 		mallard.performFly();
 		mallard.performQuack();
+
+		// observer
+		//
+		WeatherData weatherData = new WeatherData();
+		CurrentConditionsDisplay currentDisplay = new CurrentConditionsDisplay(weatherData);
+		weatherData.setMeasurements(80, 65, 30.4f);
+		// weatherData.removeObserver(currentDisplay);
+		weatherData.setMeasurements(40, 45, 40.4f);
+
 	}
 
 }
