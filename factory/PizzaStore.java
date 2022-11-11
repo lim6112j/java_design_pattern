@@ -2,19 +2,17 @@ package com.designpattern.tutorial.factory;
 
 public abstract class PizzaStore {
     Pizza pizza;
-    SimplePizzaFactory factory;
-
-    public PizzaStore(SimplePizzaFactory factory) {
-        this.factory = factory;
-    }
 
     public Pizza orderPizza(String type) {
         Pizza pizza;
-        pizza = factory.createPizza(type);
+
+        pizza = createPizza(type);
         pizza.prepare();
         pizza.bake();
         pizza.cut();
         pizza.box();
         return pizza;
     };
+
+    abstract Pizza createPizza(String type);
 }
